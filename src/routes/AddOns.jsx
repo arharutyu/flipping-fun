@@ -1,44 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import FormControl from '@mui/material/FormControl';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+import { useAddOnsContext } from '../context/AddOnsContext';
+import Setup from '../sections/add-ons/Setup';
+import Play from '../sections/add-ons/Play';
+
 import Typography from '@mui/material/Typography';
 
+
 const AddOns = () => {
-  const [level, setLevel ] = useState(1);
-
-  const handleChange = (event) => {
-    setLevel(event.target.value);
-  };
-
+  const { skillList, inProgress } = useAddOnsContext();
+  console.log(skillList)
   return (
     <>
       <Typography variant="h1" sx={{ textAlign: 'center', mb: 2 }}>
         Add Ons
       </Typography>
-
-      <Typography variant="body1" sx={{ textAlign: 'center', mb: 2 }}>
-        Choose a level:
-      </Typography>
-
-      <Box sx={{ minWidth: 120 }}>
-        <FormControl fullWidth>
-          <Select
-            id="select-level"
-            value={level}
-            onChange={handleChange}
-          >
-            <MenuItem value={1}>Level 1</MenuItem>
-            <MenuItem value={2}>Level 2</MenuItem>
-            <MenuItem value={3}>Level 3</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
+      {(!inProgress) ? (
+        <Setup />
+      ) : (
+        <Play />
+      )}
     </>
-  )
-}
+  );
+};
 
-export default AddOns
+export default AddOns;
