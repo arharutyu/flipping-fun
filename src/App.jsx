@@ -8,6 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import MainLayout from './layouts/MainLayout';
 import AddOns from './routes/AddOns';
 import Home from './routes/Home';
+import { AddOnsProvider } from './context/AddOnsContext';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,10 @@ const router = createBrowserRouter([
       },
       {
         path: "add-ons",
-        element: <AddOns />,
+        element:
+          <AddOnsProvider>
+            <AddOns />
+          </AddOnsProvider>,
       },
 
     ],
